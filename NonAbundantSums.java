@@ -6,15 +6,27 @@ public class NonAbundantSums {
     ArrayList<Integer> listOfNonSum = new ArrayList<Integer>();
     
     public NonAbundantSums() {
-
-
+        findListOfNonSum();
+        System.out.println("The sum is: " + getSumListOfNonSum());
+        
     }
     
+    private int getSumListOfNonSum() {
+        int total = 0;
+        for(int i : listOfNonSum) {
+            total += i;
+        }
+        return total;
+    }
     
-    
-    private int findListOfNonSum() {
-        for(i = 1; i < 28123; i++) {
-            if(checkAbundance(i))
+    private void findListOfNonSum() {
+        for(int i = 1; i < 28123; i++) {
+            if(checkIfProductOfAbundant(i) == false) {
+                listOfNonSum.add(i);
+            }
+            if(checkAbundance(i)) {
+                abundantNumbers.add(i);
+            }
         }
     }
     
@@ -35,7 +47,7 @@ public class NonAbundantSums {
     
     private boolean checkIfProductOfAbundant(int checkNum) {
         for(int x : abundantNumbers) {
-            for(int y: abundantNumber) {
+            for(int y: abundantNumbers) {
                 if((x + y) == checkNum) {
                     return true;
                 }
